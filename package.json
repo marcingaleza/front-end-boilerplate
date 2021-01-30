@@ -1,0 +1,34 @@
+{
+  "name": "front-end-boilerplate",
+  "version": "1.0.0",
+  "description": "A simple boilerplate combining Tailwind CSS and image optimization.`",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rm -rf dist",
+    "copy": "cp -r src/content/. dist",
+    "css:dev": "tailwindcss-cli build ./src/css/tailwind.css -o ./dist/css/main.css",
+    "css:prod": "NODE_ENV=production postcss build ./src/css/tailwind.css -o ./dist/css/main.css",
+    "svg": "svgo -f ./src/img/svg ./dist/img --disable=removeViewBox,removeTitle",
+    "img": "imagemin ./src/img/other/* --out-dir=./dist/img --plugin=pngquant --plugin=mozjpeg --plugin=pngcrush --plugin=zopfli",
+    "assets": "npm run clear && npm run svg && npm run img",
+    "dev": "npm run assets && npm run css:dev",
+    "build": "npm run assets && npm run css:build"
+  },
+  "keywords": [],
+  "author": "Marcin Galeza",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^10.2.4",
+    "cssnano": "^4.1.10",
+    "imagemin-cli": "^6.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngcrush": "^7.0.0",
+    "imagemin-pngquant": "^9.0.1",
+    "imagemin-zopfli": "^7.0.0",
+    "postcss-cli": "^8.3.1",
+    "svgo": "^1.3.2",
+    "postcss": "^8.2.4",
+    "tailwindcss": "^2.0.2",
+    "tailwindcss-cli": "^0.1.2"
+  }
+}
